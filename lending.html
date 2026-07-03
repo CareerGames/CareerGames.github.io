@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Guess The Job</title>
+
+    <style>
+
+        *{
+            margin:0;
+            padding:0;
+            box-sizing:border-box;
+        }
+
+        html, body{
+            background:#ececec;
+            font-family:Arial,sans-serif;
+            overflow:hidden;
+        }
+
+        .page-background{
+            position:fixed;
+            inset:0;
+            z-index:0;
+        }
+
+        /* ===================================== */
+        /* MAIN WRAPPER */
+        /* ===================================== */
+
+        .wrapper{
+            width:100vw;
+            height:100dvh;
+
+            display:flex;
+            justify-content:center; /* horizontal */
+            align-items:center;     /* vertical */
+        }
+
+        /* ===================================== */
+        /* SHARED */
+        /* ===================================== */
+
+        .layout{
+            position:relative;
+        }
+
+        .logo,
+        .people,
+        .phone,
+        .actions{
+            overflow:hidden;
+        }
+
+        .img{
+            -webkit-user-drag: none;
+            user-select: none;
+        }
+
+        .logo img,
+        .people img,
+        .phone img{
+            width:100%;
+            height:100%;
+            object-fit:contain;
+            display:block;
+        }
+
+        .actions img{
+            display:flex;
+            justify-content:center;
+            align-items:center;
+
+            width:100%;
+            height:100%;
+            object-fit:scale-down;
+        }
+
+        .cta{
+            display:flex;
+        }
+
+        .arrow img{
+            width:100%;
+            height:100%;
+            object-fit:contain;
+            display:block;
+        }
+
+        .google,
+        .apple{
+            display:flex;
+            justify-content:center;
+            align-items:center;
+
+            text-decoration:none;
+            overflow:hidden;
+        }
+
+        .google img,
+        .apple img{
+            width:100%;
+            height:100%;
+            object-fit:contain;
+            display:block;
+        }
+
+        /* ===================================== */
+        /* LANDSCAPE */
+        /* ===================================== */
+
+        @media (orientation: landscape){
+            .page-background{
+                background-position:center;
+                background-size: cover;
+                background-image: url("img/bg-landscape.jpg");
+            }
+
+            .layout{
+                justify-content:center; /* horizontal */
+                align-items:center;     /* vertical */
+
+                width:min(calc(100vw - 40px), calc(177.78vh - 40px));
+                aspect-ratio:16/9;
+
+                display:grid;
+                gap:1.5%;
+
+                align-items:center;
+                justify-items:center;
+
+                grid-template-columns:
+            30%
+            42%
+            26%;
+
+                grid-template-rows:
+            42%
+            16%
+            38%;
+
+                grid-template-areas:
+            "people logo phone"
+            "people cta phone"
+            "actions . .";
+            }
+
+            .logo{
+                grid-area:logo;
+                align-self:center;
+                transform:translateY(25%);
+            }
+
+            .people{
+                grid-area:people;
+
+                width:90%;
+                height:90%;
+                justify-self:center;
+                transform:translateY(20%);
+            }
+
+            .phone{
+                width:90%;
+                height:90%;
+                grid-area:phone;
+                align-self:center;
+                transform:translateY(30%);
+            }
+
+            .actions{
+
+                grid-area:actions;
+
+                width:90%;
+                height:90%;
+
+                justify-self:center;
+
+                position:relative;
+                z-index:10;
+
+                transform:translateY(-50%);
+            }
+
+            .cta{
+
+                grid-area:cta;
+
+                display:flex;
+                flex-wrap:wrap;
+
+                gap:3%;
+
+                align-content:center;
+                align-items:center;
+                justify-content:center;
+                align-self:center;
+
+                transform:translate(2%, 50%);
+            }
+
+            .arrow{
+                width:70%;
+                height:70%;
+            }
+
+            .google,
+            .apple{
+                width:38%;
+                height:70%;
+            }
+        }
+
+        /* ===================================== */
+        /* PORTRAIT */
+        /* ===================================== */
+
+        @media (orientation: portrait){
+            .page-background{
+                background-position:center;
+                background-size: cover;
+                background-image: url("img/bg-portrait.jpg");
+            }
+
+            .layout{
+
+                width:min(100vw,56.25vh);
+                aspect-ratio:9/16;
+
+                display:grid;
+
+                grid-template-columns:
+            52%
+            48%;
+
+                grid-template-rows:
+            20%
+            34%
+            10%
+            36%;
+
+                grid-template-areas:
+            "logo logo"
+            "people people"
+            "actions actions"
+            "phone cta";
+
+                gap:1.5%;
+            }
+
+            .logo{
+                grid-area:logo;
+                transform:translateY(20%);
+            }
+
+            .people{
+                grid-area:people;
+            }
+
+            .phone{
+                grid-area:phone;
+            }
+
+            .actions{
+
+                grid-area:actions;
+
+                width:200%;
+                height:200%;
+
+                justify-self:center;
+
+                position:relative;
+                z-index:10;
+
+                transform:translateY(-40%);
+            }
+
+            .cta{
+
+                grid-area:cta;
+
+                display:flex;
+                flex-direction:column;
+
+                gap:4%;
+                transform:translateX(-10%);
+            }
+
+            .arrow{
+                height:20%;
+            }
+
+            .google,
+            .apple{
+                height:22%;
+            }
+        }
+
+        /* ===================================== */
+        /* HOVER EFFECTS */
+        /* ===================================== */
+
+        .google:hover,
+        .apple:hover{
+            transform:scale(1.03);
+            transition:.2s;
+        }
+
+    </style>
+</head>
+<body>
+
+<div class="page-background"></div>
+
+<div class="wrapper">
+
+    <div class="layout">
+
+        <!-- LOGO -->
+
+        <div class="logo">
+            <img src="img/logo.png" alt="Guess The Job" draggable="false">
+        </div>
+
+        <!-- CHARACTERS -->
+
+        <div class="people">
+            <img src="img/characters.png" alt="Characters" draggable="false">
+        </div>
+
+        <!-- PHONE MOCKUP -->
+
+        <div class="phone">
+            <img src="img/phone.png" alt="Game Screenshot" draggable="false">
+        </div>
+
+        <!-- ACTION POINTS -->
+
+        <div class="actions">
+            <img src="img/features.png" alt="Features" draggable="false">
+        </div>
+
+        <!-- CTA AREA -->
+
+        <div class="cta">
+
+            <div class="arrow">
+                <img src="img/arrow.png" alt="arrow" draggable="false">
+            </div>
+
+            <a class="google"
+               href="https://play.google.com/store/apps/details?id=com.careergames.guessthejob"
+               target="_blank"
+               rel="noopener noreferrer">>
+
+                <img
+                        src="img/google-play-badge.png"
+                        alt="Get it on Google Play"
+                        draggable="false">
+            </a>
+
+            <a class="apple"
+               href="https://apps.apple.com/es/app/guess-the-job/id6767878139"
+               target="_blank"
+               rel="noopener noreferrer">>
+
+                <img
+                        src="img/app-store-badge.png"
+                        alt="Download on the App Store"
+                        draggable="false">
+            </a>
+
+        </div>
+
+    </div>
+
+</div>
+
+</body>
+</html>
