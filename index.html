@@ -11,6 +11,18 @@
       box-sizing: border-box;
     }
 
+    .page-background{
+      position:fixed;
+      inset:0;
+
+      z-index:0;
+
+      background-image:url("images/bg-portrait.jpg");
+      background-position:center;
+      background-size:cover;
+      background-repeat:no-repeat;
+    }
+
     body {
       font-family: Arial, Helvetica, sans-serif;
       background: linear-gradient(135deg, #1e293b, #0f172a);
@@ -21,14 +33,26 @@
       min-height: 100vh;
       padding: 24px;
     }
+    
+    .logo{
+      display:block;
+
+      width:min(500px, 90%);
+      height:auto;
+
+      margin:0 auto 30px auto;
+
+      -webkit-user-drag:none;
+      user-select:none;
+    }
 
     .card {
-      background: rgba(255, 255, 255, 0.08);
+      background: rgba(0, 0, 0, 0.08);
       backdrop-filter: blur(10px);
       border: 1px solid rgba(255, 255, 255, 0.15);
       border-radius: 24px;
       padding: 48px;
-      max-width: 700px;
+      max-width: 900px;
       text-align: center;
       box-shadow: 0 20px 50px rgba(0, 0, 0, 0.35);
     }
@@ -42,11 +66,11 @@
     p {
       font-size: 22px;
       line-height: 1.7;
-      color: rgba(255, 255, 255, 0.92);
+      color: rgba(20, 20, 20, 0.92);
     }
 
     a {
-      color: #60a5fa;
+      color: #1363ea;
       text-decoration: none;
       font-weight: bold;
       transition: opacity 0.2s ease;
@@ -72,8 +96,16 @@
   </style>
 </head>
 <body>
+  <div class="page-background"></div>
   <div class="card">
-    <h1>Guess The Job Game Support</h1>
+
+    <img
+            class="logo"
+            src="images/logo.png"
+            alt="Guess The Job">
+
+    <h1>Game Support</h1>
+    
     <p>
       For application-related help, reach out to
       <a href="mailto:career.games.services@gmail.com">
